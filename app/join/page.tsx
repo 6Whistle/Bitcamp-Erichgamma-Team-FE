@@ -1,8 +1,10 @@
 'use client'
 
 import axios from "axios"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 const SERVER = `http://localhost:8080`
+
 
 export default function Join(){
     const [username, setUsername] = useState('')
@@ -14,6 +16,7 @@ export default function Join(){
     const [height, setHeight] = useState("")
     const [weight, setWeight] = useState("")
     const [checked, setChecked] = useState(false)
+    const router = useRouter();
 
     const changeUsernameHandler = (e: any) => {
         setUsername(e.target.value)
@@ -46,7 +49,7 @@ export default function Join(){
 
     }
     const clickJoinHandler = () => {
-        const url = `${SERVER}/join`;
+        const url = `${SERVER}/api/users/join`;
         const data = { username, password, name, phone, job, height, weight };
         const config = {
           headers:{
@@ -55,7 +58,6 @@ export default function Join(){
             "Authorization": `Bearer blah ~` ,
             "Access-Control-Allow-Origin": "*",
         }}
-
         username === '' || password === '' || name === '' || phone === ''
         || job === '' || height === '' || weight === ''
         ? alert("You Should Input Infomation")
@@ -64,8 +66,10 @@ export default function Join(){
         : axios.post(url, data, config)
         .then(res => {
             alert(res.data.message)
-        })   
+            router.push("/login")
+        })
     }
+
 
     return (
     <div className="container">

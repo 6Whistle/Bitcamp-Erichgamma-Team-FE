@@ -19,7 +19,7 @@ export default function Login(){
         setPw(e.target.value)
     }
     const submitHandler = () => {
-        const url = `${SERVER}/login`;
+        const url = `${SERVER}/api/users/login`;
         const data = {'username': username, 'pw': pw};
         const config = {
           headers:{
