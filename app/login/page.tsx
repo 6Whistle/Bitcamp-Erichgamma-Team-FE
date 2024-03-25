@@ -9,18 +9,18 @@ const SERVER = `http://localhost:8080`
 
 export default function Login(){
     const [username, setUsername] = useState('')
-    const [pw, setPw] = useState('')
+    const [password, setPassword] = useState('')
 
 
     const changeUsernameHandler = (e: any) => {
         setUsername(e.target.value)
     } 
-    const changePwHandler = (e: any) => {
-        setPw(e.target.value)
+    const changePasswordHandler = (e: any) => {
+        setPassword(e.target.value)
     }
     const submitHandler = () => {
         const url = `${SERVER}/api/users/login`;
-        const data = {'username': username, 'pw': pw};
+        const data = {username, password};
         const config = {
           headers:{
             "Cache-Control": "no-cache",
@@ -29,10 +29,10 @@ export default function Login(){
             "Access-Control-Allow-Origin": "*",
         }}
 
-        alert("login request : " + username + ", " + pw)
+        alert("login request : " + username + ", " + password)
         axios.post(url, data, config)
         .then(res => {
-            alert("login response : " + res.data.username + ", " + res.data.pw + ", " + res.data.login)
+            alert("login response : " + res.data.message)
         })
     }
 
@@ -42,7 +42,7 @@ export default function Login(){
             <h5>ID</h5>
             <input type="text" onChange={changeUsernameHandler}/><br />
             <h5>PW</h5>
-            <input type="text" onChange={changePwHandler}/><br /><br />
+            <input type="text" onChange={changePasswordHandler}/><br /><br />
             <button onClick={submitHandler}>login</button><br />
             <Link href={"/join"}>join</Link>
         </body>
