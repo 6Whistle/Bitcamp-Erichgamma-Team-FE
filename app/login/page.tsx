@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import Link from "next/link";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 const SERVER = `http://localhost:8080`
 
@@ -10,7 +10,7 @@ const SERVER = `http://localhost:8080`
 export default function Login(){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
+    const router = useRouter()
 
     const changeUsernameHandler = (e: any) => {
         setUsername(e.target.value)
@@ -29,10 +29,11 @@ export default function Login(){
             "Access-Control-Allow-Origin": "*",
         }}
 
-        alert("login request : " + username + ", " + password)
         axios.post(url, data, config)
         .then(res => {
-            alert("login response : " + res.data.message)
+            (res.data.message) === "SUCCESS"
+            ? router.push("/articles")
+            : alert("Failed to login")
         })
     }
 
