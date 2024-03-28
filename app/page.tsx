@@ -3,21 +3,14 @@ import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import "./globals.css"
-const SERVER = `http://localhost:8080`
+import { API } from "./atoms/enums/API"
+import AxiosConfig from "./organisms/configs/axios-config"
+import { PG } from "./atoms/enums/PG"
 
 export default function Home(){
   const [name, setName] = useState('')
-
-  const url = `${SERVER}/name`;
-  const data = {'name': name};
-  const config = {
-    headers:{
-      "Cache-Control": "no-cache",
-      "Content-Type": "application/json",
-      "Authorization": `Bearer blah ~` ,
-      "Access-Control-Allow-Origin": "*",
-  }}
+  const url = `${API.SERVER}${API.USER}/name`;
+  const data = {name};
 
   const changeHandler = (e: any) => {
     setName(e.target.value)
@@ -25,7 +18,7 @@ export default function Home(){
 
   const clickHandler = () => {
     alert("request name : " + name)
-    axios.post(url, data, config)
+    axios.post(url, data, AxiosConfig())
     .then(res=>{
       alert("response name : " + res.data.name)
     })
@@ -34,10 +27,11 @@ export default function Home(){
   return <div className='text-center'>
       <b>Welcome To Next.js!!</b>
       <h3>Insert your name</h3>
-      <input type="text" onChange={changeHandler} /><br />
+      <input type="text" onChange={changeHandler} />
       <button onClick={clickHandler}>send</button><br />
-      <Link href={'/login'}>login</Link><br />
-      <Link href={'/join'}>join</Link><br />
-      <Link href={'/mui-demo'}>mui-demo</Link><br />
+      <Link href={`${PG.USER}/login`}>login</Link><br />
+      <Link href={`${PG.USER}/join`}>join</Link><br />
+      <Link href={`${PG.DEMO}/mui-demo`}>mui-demo</Link><br />
+      <Link href={`${PG.DEMO}/counter-demo`}>counter-demo</Link><br />
   </div>
 }

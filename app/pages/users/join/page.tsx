@@ -1,10 +1,11 @@
 'use client'
 
+import { API } from "@/app/atoms/enums/API"
+import { PG } from "@/app/atoms/enums/PG"
+import AxiosConfig from "@/app/organisms/configs/axios-config"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-const SERVER = `http://localhost:8080`
-
 
 export default function Join(){
     const [username, setUsername] = useState('')
@@ -49,24 +50,18 @@ export default function Join(){
 
     }
     const clickJoinHandler = () => {
-        const url = `${SERVER}/api/users/join`;
+        const url = `${API.SERVER}${API.USER}/join`;
         const data = { username, password, name, phone, job, height, weight };
-        const config = {
-          headers:{
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            "Authorization": `Bearer blah ~` ,
-            "Access-Control-Allow-Origin": "*",
-        }}
+
         username === '' || password === '' || name === '' || phone === ''
         || job === '' || height === '' || weight === ''
         ? alert("You Should Input Infomation")
         : password !== pwRepeat
         ? alert("Check Password")
-        : axios.post(url, data, config)
+        : axios.post(url, data, AxiosConfig())
         .then(res => {
             alert(res.data.message)
-            router.push("/login")
+            router.push(`${PG.USER}/login`)
         })
     }
 
@@ -77,28 +72,28 @@ export default function Join(){
         <p>Please fill in this form to create an account.</p>
         <hr />
         <label htmlFor="id"><b>Username : </b></label>
-        <input type="text" placeholder="Enter Username" name="text" required onChange={changeUsernameHandler} /><br /><br />
+        <input id="id" type="text" placeholder="Enter Username" name="text" onChange={changeUsernameHandler} /><br /><br />
 
         <label htmlFor="psw"><b>Password : </b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required onChange={changePwHandler} /><br /><br />
+        <input id="psw" type="password" placeholder="Enter Password" name="psw" required onChange={changePwHandler} /><br /><br />
 
         <label htmlFor="psw-repeat"><b>Repeat Password : </b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required onChange={changePwRepeatHandler}/><br /><br />
+        <input id="psw-repeat" type="password" placeholder="Repeat Password" name="psw-repeat" required onChange={changePwRepeatHandler}/><br /><br />
 
         <label htmlFor="name"><b>Name : </b></label>
-        <input type="text" placeholder="Enter Name" name="name" required onChange={changeNameHandler}/><br /><br />
+        <input id="name" type="text" placeholder="Enter Name" name="name" required onChange={changeNameHandler}/><br /><br />
         
         <label htmlFor="phone"><b>Phone : </b></label>
-        <input type="tel" placeholder="Enter Phone" name="phone" required onChange={changePhoneHandler}/><br /><br />
+        <input id="phone" type="tel" placeholder="Enter Phone" name="phone" required onChange={changePhoneHandler}/><br /><br />
 
         <label htmlFor="job"><b>Job : </b></label>
-        <input type="text" placeholder="Enter Job" name="Job" required onChange={changeJobHandler}/><br /><br />
+        <input id="job" type="text" placeholder="Enter Job" name="Job" required onChange={changeJobHandler}/><br /><br />
 
         <label htmlFor="height"><b>Height : </b></label>
-        <input type="number" placeholder="Enter Height" name="Height" required onChange={changeHeightHandler}/><br /><br />
+        <input id="height" type="number" placeholder="Enter Height" name="Height" required onChange={changeHeightHandler}/><br /><br />
 
         <label htmlFor="weight"><b>Weight : </b></label>
-        <input type="number" placeholder="Enter Weight" name="Weight" required onChange={changeWeightHandler}/><br /><br />
+        <input id="weight" type="number" placeholder="Enter Weight" name="Weight" required onChange={changeWeightHandler}/><br /><br />
         
         <label>
           <input type="checkbox" checked = {checked} name="remember" style={{marginBottom: "15px"}} onChange={changeCheckedHandler}/> Remember me

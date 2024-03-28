@@ -1,11 +1,11 @@
 'use client'
-
+import { API } from "@/app/atoms/enums/API";
+import { PG } from "@/app/atoms/enums/PG";
+import AxiosConfig from "@/app/organisms/configs/axios-config";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-const SERVER = `http://localhost:8080`
-
 
 export default function Login(){
     const [username, setUsername] = useState('')
@@ -19,33 +19,24 @@ export default function Login(){
         setPassword(e.target.value)
     }
     const submitHandler = () => {
-        const url = `${SERVER}/api/users/login`;
+        const url = `${API.SERVER}${API.USER}/login`;
         const data = {username, password};
-        const config = {
-          headers:{
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            "Authorization": `Bearer blah ~` ,
-            "Access-Control-Allow-Origin": "*",
-        }}
 
-        axios.post(url, data, config)
+        axios.post(url, data, AxiosConfig())
         .then(res => {
             (res.data.message) === "SUCCESS"
-            ? router.push("/articles")
+            ? router.push(`${PG.BOARD}/articles`)
             : alert("Failed to login")
         })
     }
 
-    return <html>
-        <body>
+    return <div>
             <h3>Login Page</h3>
             <h5>ID</h5>
             <input type="text" onChange={changeUsernameHandler}/><br />
             <h5>PW</h5>
             <input type="text" onChange={changePasswordHandler}/><br /><br />
             <button onClick={submitHandler}>login</button><br />
-            <Link href={"/join"}>join</Link>
-        </body>
-    </html>;
+            <Link href={`${PG.USER}/join`}>join</Link>
+    </div>;
 }
