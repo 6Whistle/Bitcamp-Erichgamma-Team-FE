@@ -14,7 +14,7 @@ const status = {
 const handlePending = (state:any) => {
     
 }
-const handleFulfilled = (state:any, payload:any) => {
+const handleFulfilled = (state:any, {payload}:any) => {
     console.log("================= concolusion ===================")
     console.log(payload)
 }
