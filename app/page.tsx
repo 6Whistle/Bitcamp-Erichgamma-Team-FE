@@ -3,11 +3,12 @@ import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { API } from "./atoms/enums/API"
-import AxiosConfig from "./organisms/configs/axios-config"
-import { PG } from "./atoms/enums/PG"
+import { API } from "../redux/common/enums/API"
+import AxiosConfig from "../redux/common/configs/axios-config"
+import { PG } from "../redux/common/enums/PG"
+import { NextPage } from "next"
 
-export default function Home(){
+const HomePage:NextPage = () => {
   const [name, setName] = useState('')
   const url = `${API.SERVER}${API.USER}/name`;
   const data = {name};
@@ -33,5 +34,8 @@ export default function Home(){
       <Link href={`${PG.USER}/join`}>join</Link><br />
       <Link href={`${PG.DEMO}/mui-demo`}>mui-demo</Link><br />
       <Link href={`${PG.DEMO}/counter-demo`}>counter-demo</Link><br />
+      <Link href={`${PG.DEMO}/redux-counter`}>counter-redux</Link><br />
   </div>
 }
+
+export default HomePage

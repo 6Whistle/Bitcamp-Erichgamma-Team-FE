@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import ArticlesRows from "@/app/organisms/rows/articles-rows";
-import ArticlesColumns from "@/app/organisms/columns/articles-columns";
+import ArticlesRows from "@/app/component/rows/articles-rows";
+import ArticlesColumns from "@/app/component/columns/articles-columns";
 
 export default function Articles(){
         return (

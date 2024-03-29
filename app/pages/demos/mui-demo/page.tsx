@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import MuiDemoRows from '@/app/organisms/rows/mui-demo-rows';
-import MuiDemoColumns from '@/app/organisms/columns/mui-demo-columns';
+import MuiDemoRows from '@/app/component/rows/mui-demo-rows';
+import MuiDemoColumns from '@/app/component/columns/mui-demo-columns';
+import { NextPage } from 'next';
 
-export default function DataGridDemo() {
+const DataGridDemoPage:NextPage = () => {
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
@@ -25,3 +26,5 @@ export default function DataGridDemo() {
     </Box>
   );
 }
+
+export default DataGridDemoPage
