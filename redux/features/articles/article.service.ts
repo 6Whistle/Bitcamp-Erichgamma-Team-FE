@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllArticlesAPI } from "./article.api";
+import { fetchAllArticlesAPI } from "./article.api";
 
-export const getAllArticles:any = createAsyncThunk('articles/getAllArticles', async (page:number, {rejectWithValue}) => {
-    const {message, articles}:any = await getAllArticlesAPI(1);
+export const fetchAllArticles:any = createAsyncThunk('articles/fetchAllArticles', async (page:number, {rejectWithValue}) => {
+    const {message, articles}:any = await fetchAllArticlesAPI(page);
     return articles
 })

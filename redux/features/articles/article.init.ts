@@ -4,5 +4,6 @@ export const initialState:IArticle = {
     id: 0,
     title: "no title",
     content: "no content",
-    registerDate: "no registerDate"
+    registerDate: "no registerDate",
+    array: []
 }

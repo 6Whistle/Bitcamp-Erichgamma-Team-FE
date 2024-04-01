@@ -2,7 +2,9 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import countReducer from "@/redux/features/counter/counter.slice";
 import articleReducer from "@/redux/features/articles/article.slice";
+import userReducer from "@/redux/features/users/user.slice"
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+
 
 const createNoopStorage = () => {
   return {
@@ -33,12 +35,19 @@ const articlePersistConfig = {
   storage,
   whitelist: ["articleState"],
 };
+const userPersistConfig = {
+  key: "user",
+  storage,
+  whitelist: ["userState"],
+}
 
 
 const persistedCountReducer = persistReducer(countPersistConfig, countReducer);
 const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer)
 
 export const rootReducer = combineReducers({
   count: persistedCountReducer,
-  article: persistedArticleReducer
+  article: persistedArticleReducer,
+  user: persistedUserReducer
 });

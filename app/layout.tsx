@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import Headers from "@/app/component/layout/header"
 
 const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
   ssr: false
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Headers />
         <ReduxProvider> {children}</ReduxProvider>
       </body>
     </html>
   );
 }
+

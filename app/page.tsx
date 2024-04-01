@@ -36,6 +36,7 @@ const HomePage:NextPage = () => {
       <Link href={`${PG.DEMO}/counter-demo`}>counter-demo</Link><br />
       <Link href={`${PG.DEMO}/redux-counter`}>counter-redux</Link><br />
       <Link href={`${PG.BOARD}/articles`}>articles</Link><br />
+      <Link href={`${PG.USER}`}>users</Link><br />
   </div>
 }
 
