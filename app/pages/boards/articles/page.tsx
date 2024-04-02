@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import ArticlesColumns from "@/app/component/columns/articles-columns";
+import ArticlesColumns from "@/app/component/articles/columns";
 import { NextPage } from "next";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllArticles } from "@/redux/features/articles/article.slice";

@@ -1,12 +1,13 @@
 'use client'
 
+import AxiosConfig from "@/redux/common/configs/axios-config"
 import { API } from "@/redux/common/enums/API"
 import { PG } from "@/redux/common/enums/PG"
-import AxiosConfig from "@/redux/common/configs/axios-config"
+import { Input } from "@mui/material"
 import axios from "axios"
+import { NextPage } from "next"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { NextPage } from "next"
 
 const JoinPage:NextPage = () => {
     const [username, setUsername] = useState('')
@@ -68,33 +69,33 @@ const JoinPage:NextPage = () => {
 
 
     return (
-    <div className="container">
+    <>
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
         <hr />
-        <label htmlFor="id"><b>Username : </b></label>
-        <input id="id" type="text" placeholder="Enter Username" name="text" onChange={changeUsernameHandler} /><br /><br />
+        <label htmlFor="username"><b>Username : </b></label>
+        <input id="username" type="text" placeholder="Enter Username" name="username" onChange={changeUsernameHandler} /><br /><br />
 
         <label htmlFor="psw"><b>Password : </b></label>
-        <input id="psw" type="password" placeholder="Enter Password" name="psw" required onChange={changePwHandler} /><br /><br />
+        <input id="psw" type="password" placeholder="Enter Password" name="psw" onChange={changePwHandler} /><br /><br />
 
         <label htmlFor="psw-repeat"><b>Repeat Password : </b></label>
-        <input id="psw-repeat" type="password" placeholder="Repeat Password" name="psw-repeat" required onChange={changePwRepeatHandler}/><br /><br />
+        <input id="psw-repeat" type="password" placeholder="Repeat Password" name="psw-repeat" onChange={changePwRepeatHandler}/><br /><br />
 
         <label htmlFor="name"><b>Name : </b></label>
-        <input id="name" type="text" placeholder="Enter Name" name="name" required onChange={changeNameHandler}/><br /><br />
+        <input id="name" type="text" placeholder="Enter Name" name="name" onChange={changeNameHandler}/><br /><br />
         
         <label htmlFor="phone"><b>Phone : </b></label>
-        <input id="phone" type="tel" placeholder="Enter Phone" name="phone" required onChange={changePhoneHandler}/><br /><br />
+        <input id="phone" type="tel" placeholder="Enter Phone" name="phone" onChange={changePhoneHandler}/><br /><br />
 
         <label htmlFor="job"><b>Job : </b></label>
-        <input id="job" type="text" placeholder="Enter Job" name="Job" required onChange={changeJobHandler}/><br /><br />
+        <input id="job" type="text" placeholder="Enter Job" name="Job" onChange={changeJobHandler}/><br /><br />
 
         <label htmlFor="height"><b>Height : </b></label>
-        <input id="height" type="number" placeholder="Enter Height" name="Height" required onChange={changeHeightHandler}/><br /><br />
+        <input id="height" type="number" placeholder="Enter Height" name="Height" onChange={changeHeightHandler}/><br /><br />
 
         <label htmlFor="weight"><b>Weight : </b></label>
-        <input id="weight" type="number" placeholder="Enter Weight" name="Weight" required onChange={changeWeightHandler}/><br /><br />
+        <input id="weight" type="number" placeholder="Enter Weight" name="Weight" onChange={changeWeightHandler}/><br /><br />
         
         <label>
           <input type="checkbox" checked = {checked} name="remember" style={{marginBottom: "15px"}} onChange={changeCheckedHandler}/> Remember me
@@ -104,7 +105,7 @@ const JoinPage:NextPage = () => {
             <button type="button" className="cancelbtn">Cancel</button>
                 <button type="submit" className="signupbtn" onClick={clickJoinHandler}>Sign Up</button>
         </div>
-    </div>
+    </>
     )
 }
 

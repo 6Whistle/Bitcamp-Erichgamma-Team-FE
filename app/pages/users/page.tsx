@@ -21,10 +21,10 @@ const UsersPage:NextPage = () => {
 
     return (
         <>
-          <h2>Articles</h2>
+          <h2>Users</h2>
           <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-              rows={allUsers ?? [{id: 0}]}
+              rows={allUsers}
               columns={UsersColumns()}
               initialState={{
                 pagination: {
